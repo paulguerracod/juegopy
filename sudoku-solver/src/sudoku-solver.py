@@ -51,3 +51,47 @@ class SudokuSolver:
                     self.steps.append((row, col, 0, False))
         
         return False
+    
+     def generate_puzzle(self, difficulty: int = 40) -> None:
+        """Genera un nuevo puzzle de Sudoku"""
+        # Tablero vacío
+        self.board = np.zeros((9, 9), dtype=int)
+        self.solve()
+        
+        # Remover números según dificultad
+        to_remove = 81 - difficulty
+        indices = np.random.choice(81, to_remove, replace=False)
+        for idx in indices:
+            row, col = divmod(idx, 9)
+            self.board[row, col] = 0
+        
+        self.original = self.board.copy()
+    
+    def reset(self) -> None:
+        """Reinicia al estado original"""
+        self.board = self.original.copy()
+        self.steps = []
+        self.solution = None
+
+if __name__ == "__main__":
+    # Ejemplo de uso
+    puzzle = [
+        [5, 3, 0, 0, 7, 0, 0, 0, 0],
+        [6, 0, 0, 1, 9, 5, 0, 0, 0],
+        [0, 9, 8, 0, 0, 0, 0, 6, 0],
+        [8, 0, 0, 0, 6, 0, 0, 0, 3],
+        [4, 0, 0, 8, 0, 3, 0, 0, 1],
+        [7, 0, 0, 0, 2, 0, 0, 0, 6],
+        [0, 6, 0, 0, 0, 0, 2, 8, 0],
+        [0, 0, 0, 4, 1, 9, 0, 0, 5],
+        [0, 0, 0, 0, 8, 0, 0, 7, 9]
+    ]
+    
+    solver = SudokuSolver(puzzle)
+    print("Puzzle original:")
+    print(solver.board)
+    
+    start_time = time.time()
+    solver.solve(visualize=True)
+    print(f"\nSolución encontrada en {time.time() - start_time:.4f} segundos")
+    print(solver.solution)
