@@ -52,7 +52,7 @@ class SudokuSolver:
         
         return False
     
-     def generate_puzzle(self, difficulty: int = 40) -> None:
+    def generate_puzzle(self, difficulty: int = 40) -> None:
         """Genera un nuevo puzzle de Sudoku"""
         # Tablero vacío
         self.board = np.zeros((9, 9), dtype=int)

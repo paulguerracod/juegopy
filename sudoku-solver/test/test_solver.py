@@ -1,5 +1,11 @@
+import sys
+import os
 import unittest
-from src.sudoku_solver import SudokuSolver
+
+# Agrega el directorio src al path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
+from sudoku_solver import SudokuSolver  # Importación relativa corregida
 
 class TestSudokuSolver(unittest.TestCase):
     def setUp(self):
@@ -18,11 +24,13 @@ class TestSudokuSolver(unittest.TestCase):
     
     def test_solution(self):
         self.assertTrue(self.solver.solve())
-        self.assertFalse(0 in self.solver.solution)
+        self.assertIsNotNone(self.solver.solution)
+        self.assertFalse(0 in self.solver.solution.flatten())
     
     def test_valid_move(self):
         self.assertTrue(self.solver.is_valid(0, 2, 4))
         self.assertFalse(self.solver.is_valid(0, 2, 5))
+        self.assertFalse(self.solver.is_valid(0, 2, 3))
 
 if __name__ == '__main__':
     unittest.main()
