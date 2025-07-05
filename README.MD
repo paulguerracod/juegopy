@@ -25,3 +25,22 @@
 - **Pruebas unitarias: Validación completa del algoritmo
 
 - **Interfaz gráfica: Implementada con Pygame para mejor experiencia de usuario
+
+# Tecnologías Utilizadas
+** Python 3.10+
+
+** Bibliotecas principales:
+
+- NumPy - Para manipulación eficiente de matrices
+
+- Pygame - Para la interfaz gráfica y visualización
+
+- pytest - Para pruebas unitarias
+
+- Herramientas de desarrollo:
+
+- VS Code - Entorno de desarrollo
+
+- Git - Control de versiones
+
+- GitHub Actions - CI/CD
